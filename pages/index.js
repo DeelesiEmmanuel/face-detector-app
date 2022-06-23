@@ -6,17 +6,18 @@ import { Image, Transformation } from "cloudinary-react";
 
 export default function Home() {
   const uploadImage = async () => {
-    const image = document.getElementById("image");
+    const image = document.getElementById("image").src;
+    console.log(image)
     try {
       fetch("/api/upload", {
         method: "POST",
-        body: JSON.stringify({ data: image.src }),
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: image }),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Image upload complete");
           console.log(data);
+          console.log("Image upload complete");
         });
     } catch (error) {
       console.error(error);
@@ -50,6 +51,7 @@ export default function Home() {
             />
           </Image>
           <br />
+          {/* Button */}
           <button className={styles.btn} onClick={uploadImage}>
             Upload Image
           </button>

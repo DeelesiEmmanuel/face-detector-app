@@ -1,15 +1,15 @@
 var cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "20000mb",
+      sizeLimit: "10000mb",
     },
   },
 };
@@ -31,6 +31,5 @@ export default async function handler(req, res) {
       console.log(error);
     }
     res.status(200).json({ data: upload_url });
-    console.log("Upload completed!");
   }
 }
